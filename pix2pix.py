@@ -191,16 +191,16 @@ class Pix2Pix():
         com_model_json = self.combined.to_json()
         gen_model_json = self.generator.to_json()
         dis_model_json = self.discriminator.to_json() 
-        with open("./models/saved_models/com_model.json", "w") as json_file:
+        with open("./saved_models/com_model.json", "w") as json_file:
             json_file.write(com_model_json)
-        with open("./models/saved_models/gen_model.json", "w") as json_file:
+        with open("./saved_models/gen_model.json", "w") as json_file:
             json_file.write(gen_model_json)
-        with open("./models/saved_models/dis_model.json", "w") as json_file:
+        with open("./saved_models/dis_model.json", "w") as json_file:
             json_file.write(dis_model_json)	
         # serialize weights to HDF5
-        self.combined.save_weights("./models/saved_models/com_model.h5")
-        self.generator.save_weights("./models/saved_models/gen_model.h5")
-        self.discriminator.save_weights("./models/saved_models/dis_model.h5")
+        self.combined.save_weights("./saved_models/com_model.h5")
+        self.generator.save_weights("./saved_models/gen_model.h5")
+        self.discriminator.save_weights("./saved_models/dis_model.h5")
         print("Model saved")
 
     def sample_images(self, epoch, batch_i):
@@ -235,7 +235,7 @@ if __name__ == '__main__':
 
     ## use the trained model to generate data
     test_model = gan.generator
-    test_model.load_weights("./models/saved_models/gen_model.h5")
+    test_model.load_weights("./saved_models/gen_model.h5")
     path = glob("./datasets/pathology/test_random/*")
     num = 1
     for img in path:
